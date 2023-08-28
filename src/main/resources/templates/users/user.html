@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+</head>
+<body>
+   <form th:object="${user}"
+         th:action="@{/api/v1/users/{userId}/update(userId=${user.id})}"
+         enctype="multipart/form-data"
+         method="post">
+       <label for="username"> Username:
+           <input id="username" type="text" name="username" th:value="${user.username}">
+       </label><br>
+       <label for="birthDate"> Birthdate:
+           <input id="birthDate" type="date" name="birthDate" th:value="${user.birthDate}">
+       </label><br>
+       <label for="lastName"> LastName:
+           <input id="lastName" type="text" name="lastName" th:value="${user.lastName}">
+       </label><br>
+       <label for="firstName"> FirstName:
+           <input id="firstName" type="text" name="firstName" th:value="${user.firstName}">
+       </label><br>
+       <div th:if="${user.image}">
+           <img th:src="@{/api/v2/users/{userId}/avatar(userId=${user.id})}" alt="user image">
+       </div>
+       <label for="image"> Image:
+           <input id="image" type="file" name="image">
+       </label><br>
+       <div th:each="role : ${roles}">
+           <input th:id="${role}" type="radio" name="role" th:value="${role}" th:checked="${role == user.role}">
+           <label th:for="${role}" th:text="${role}">Role name</label>
+       </div>
+       <div>
+           <label for="company">
+               <select id="company" name="companyId">
+                   <option th:each="company : ${companies}"
+                           th:value="${company.id}"
+                           th:selected="${company.id == user.companyId}"
+                           th:text="${company.name}">
+                       Company
+                   </option>
+               </select>
+           </label>
+       </div>
+       <button type="submit">Update</button>
+   </form>
+   <form th:action="@{/api/v1/users/{userId}/delete(userId=${user.id})}"
+         th:if="${user.role.name() == 'ADMIN'}"
+         method="post" >
+       <button type="submit">remove</button>
+   </form>
+</body>
+
+
+
+</html>

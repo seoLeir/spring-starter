@@ -1,0 +1,61 @@
+db:
+  username: ${username.value:postgres}
+  password: 123
+  driver: PostgreSQLDriver
+  url: 5432
+  hosts: localhost,127.0.0.1
+  properties:
+    first: 123
+    second: 567
+    third.value: Third
+  pool:
+    size: 12
+    timeout: 10
+  pools:
+    - size: 1
+      timeout: 1
+    - size: 2
+      timeout: 2
+    - size: 3
+      timeout: 3
+
+logging:
+  level:
+    root: info
+    com.seoLeir.spring.database.pool.ConnectionPool: info
+    org.springframework.jdbc.core: debug
+
+spring:
+  mvc:
+#    view:
+#      prefix: /WEB-INF/view/jsp/
+#      suffix: .jsp
+    format:
+      date: iso
+  datasource:
+    url: jdbc:postgresql://localhost:5432/spring-starter
+    username: postgres
+    password: 123
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    properties:
+      hibernate:
+        naming:
+          implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        show_sql: true
+        format_sql: true
+        hbm2ddl:
+          auto: validate
+server:
+  port: 8080
+  error:
+    include-stacktrace: always
+springdoc:
+  api-docs:
+    enabled: true
+
+application:
+  image:
+    bucket: D:\spring-starter\images
