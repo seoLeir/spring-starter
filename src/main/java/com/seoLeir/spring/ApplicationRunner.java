@@ -14,6 +14,7 @@ import java.time.LocalDate;
 
 @ConfigurationPropertiesScan
 @SpringBootApplication
+@OpenAPIDefinition
 public class ApplicationRunner {
     public static void main(String[] args) {
         ConfigurableApplicationContext context = SpringApplication.run(ApplicationRunner.class, args);
