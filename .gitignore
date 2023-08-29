@@ -1,0 +1,12 @@
+# Intellij Idea
+.idea
+images
+
+# Gradle
+build/
+.gradle
+
+# Log
+*.log
+
+
