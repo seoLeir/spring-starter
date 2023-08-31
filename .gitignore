@@ -21,4 +21,10 @@ gradle-app.setting
 .classpath
 
 .idea
-.images
+images/
+*.log
+.war
+.jar
+.ear
+*.iml
+*.iws
