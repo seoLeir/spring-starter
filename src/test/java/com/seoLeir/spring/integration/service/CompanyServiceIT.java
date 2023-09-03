@@ -31,9 +31,9 @@ public class CompanyServiceIT extends IntegrationTestBase {
 
     @Test
     void finById(){
-//        Optional<CompanyReadDto> actualResult = companyService.findById(COMPANY_ID);
-//        assertTrue(actualResult.isPresent());
-//        CompanyReadDto expectedResult = new CompanyReadDto(COMPANY_ID);
-//        actualResult.ifPresent(actual -> assertEquals(expectedResult, actual));
+        Optional<CompanyReadDto> actualResult = companyService.findById(COMPANY_ID);
+        assertTrue(actualResult.isPresent());
+        CompanyReadDto expectedResult = new CompanyReadDto(COMPANY_ID, "Google");
+        actualResult.ifPresent(actual -> assertEquals(expectedResult, actual));
     }
 }
