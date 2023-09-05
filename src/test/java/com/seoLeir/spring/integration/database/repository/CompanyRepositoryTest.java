@@ -30,38 +30,38 @@ class CompanyRepositoryTest extends IntegrationTestBase {
     @Test
     @Disabled
     void delete(){
-//        Optional<Company> maybeCompany = companyRepository.findById(APPLE_ID);
-//        assertThat(maybeCompany).isPresent();
-//        maybeCompany.ifPresent(companyRepository::delete);
-//        entityManager.flush();
-//        assertThat(companyRepository.findById(APPLE_ID)).isEmpty();
+        Optional<Company> maybeCompany = companyRepository.findById(APPLE_ID);
+        assertThat(maybeCompany).isPresent();
+        maybeCompany.ifPresent(companyRepository::delete);
+        entityManager.flush();
+        assertThat(companyRepository.findById(APPLE_ID)).isEmpty();
     }
 
     @Test
     void checkFindByQueries(){
-//        companyRepository.findByName("Google");
-//        companyRepository.findAllByNameContainingIgnoreCase("a");
+        companyRepository.findByName("Google");
+        companyRepository.findAllByNameContainingIgnoreCase("a");
     }
 
     @Test
     void findById() {
-//        transactionTemplate.executeWithoutResult(tx -> {
-//            Company company = entityManager.find(Company.class, 1);
-//            assertThat(company).isNotNull();
-//            assertThat(company.getLocales()).hasSize(2);
-//        });
+        transactionTemplate.executeWithoutResult(tx -> {
+            Company company = entityManager.find(Company.class, 1);
+            assertThat(company).isNotNull();
+            assertThat(company.getLocales()).hasSize(2);
+        });
     }
 
     @Test
     void save(){
-//        var company = Company.builder()
-//                .name("Apple2")
-//                .locales(Map.of(
-//                        "ru", "Apple описание",
-//                        "en", "Apple description"))
-//                .build();
-//        entityManager.persist(company);
-//        assertThat(company.getId()).isNotNull();
+        var company = Company.builder()
+                .name("Apple2")
+                .locales(Map.of(
+                        "ru", "Apple описание",
+                        "en", "Apple description"))
+                .build();
+        entityManager.persist(company);
+        assertThat(company.getId()).isNotNull();
     }
 
 }
