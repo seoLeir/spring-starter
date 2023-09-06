@@ -73,7 +73,8 @@ public class UserController {
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
             return "redirect:/api/v1/users/registration";
         }
-        return "redirect:/api/v1/users/" + userService.create(user).getId();
+        userService.create(user);
+        return "redirect:/api/v1/login";
     }
 
 //    @PutMapping("/{id}")

@@ -22,6 +22,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -37,6 +38,7 @@ import java.util.Optional;
 public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
     private final CompanyRepository companyRepository;
+    private final PasswordEncoder passwordEncoder;
     private final ImageService imageService;
     private final UserMapper userMapper = new UserMapperImpl();
     private final CompanyMapper companyMapper = new CompanyMapperImpl();
@@ -86,7 +88,7 @@ public class UserService implements UserDetailsService {
                    .map(dto -> {
                        uploadImage(dto.getImage());
                        Company company = companyRepository.findById(dto.getCompanyId()).orElse(null);
-                       return userMapper.userFromUserCreateEdit(dto, company);
+                       return userMapper.userFromUserCreateEdit(dto, company, passwordEncoder);
                    })
                    .map(userRepository::save)
                    .map(user -> {
@@ -102,7 +104,7 @@ public class UserService implements UserDetailsService {
                 .map(user -> {
                     uploadImage(dto.getImage());
                     Company company = companyRepository.findById(dto.getCompanyId()).orElse(null);
-                    userMapper.updateUserFromUserCreateEditDto(dto, user, company);
+                    userMapper.updateUserFromUserCreateEditDto(dto, user, company, passwordEncoder);
                     return user;
                 })
                 .map(user -> {
