@@ -4,6 +4,7 @@ import com.seoLeir.spring.database.entity.Role;
 import com.seoLeir.spring.validation.group.CreateAction;
 import com.seoLeir.spring.validation.UserInfo;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Value;
 import lombok.experimental.FieldNameConstants;
@@ -19,6 +20,9 @@ public class UserCreateEditDto {
 
     @Email
     String username;
+
+    @NotBlank(groups = CreateAction.class, message = "password may not be blank")
+    String password;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     LocalDate birthDate;
