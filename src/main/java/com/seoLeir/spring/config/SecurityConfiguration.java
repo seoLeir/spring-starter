@@ -27,6 +27,11 @@ public class SecurityConfiguration {
                         .loginPage("/api/v1/login")
                         .defaultSuccessUrl("/api/v1/users/registration")
                         .permitAll());
+        http.logout(httpSecurityLogoutConfigurer ->
+                httpSecurityLogoutConfigurer
+                        .logoutUrl("/api/v1/logout")
+                        .logoutSuccessUrl("/api/v1/login")
+                        .deleteCookies("JSESSIONID"));
         http.httpBasic(withDefaults());
         return http.build();
     }
