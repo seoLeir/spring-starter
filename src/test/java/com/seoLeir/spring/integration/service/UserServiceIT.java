@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
@@ -49,7 +50,7 @@ public class UserServiceIT extends IntegrationTestBase {
                 "test-lastname",
                 Role.ADMIN,
                 COMPANY_ID,
-                null
+                new MockMultipartFile("test", new byte[0])
         );
         UserReadDto actualResult = userService.create(userCreateEditDto);
         assertAll(
@@ -72,7 +73,7 @@ public class UserServiceIT extends IntegrationTestBase {
                 "test-lastname",
                 Role.ADMIN,
                 COMPANY_ID,
-                null
+                new MockMultipartFile("test", new byte[0])
         );
         Optional<UserReadDto> actualResult = userService.update(USER_1, userCreateEditDto);
         assertThat(actualResult).isPresent();
