@@ -19,6 +19,8 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.security.access.prepost.PostFilter;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -43,6 +45,8 @@ public class UserService implements UserDetailsService {
     private final UserMapper userMapper = new UserMapperImpl();
     private final CompanyMapper companyMapper = new CompanyMapperImpl();
 
+//    @PostFilter("filterObject.role.name().equals('ADMIN')")
+//    @PostFilter("@companyService.findById(filterObject.companyId).isPresent()")
     @Transactional(readOnly = true)
     public List<UserReadDto> findAll(){
         return userRepository.findAll()
@@ -73,6 +77,8 @@ public class UserService implements UserDetailsService {
                 });
     }
 
+    @PreAuthorize("hasAnyAuthority('ADMIN')")
+//    @PostAuthorize("returnObject")
     @Transactional(readOnly = true)
     public Optional<UserReadDto> findById(Long id){
         return userRepository.findById(id).

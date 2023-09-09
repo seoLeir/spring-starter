@@ -25,6 +25,7 @@ logging:
     com.seoLeir.spring.database.pool.ConnectionPool: info
     org.springframework.jdbc.core: debug
 
+
 spring:
   mvc:
 #    view:
