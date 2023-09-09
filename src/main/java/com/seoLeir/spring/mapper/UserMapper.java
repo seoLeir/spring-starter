@@ -48,7 +48,7 @@ public abstract class UserMapper {
             @Mapping(target = "company", source = "company"),
             @Mapping(target = "id", ignore = true),
             @Mapping(target = "image", expression = "java(setImageToUser(userCreateEditDto, user))"),
-            @Mapping(target = "password", expression = "java(passwordEncode(userCreateEditDto.getPassword(), passwordEncoder))")
+            @Mapping(target = "password", expression = "java(passwordEncode(userCreateEditDto.getPassword(), passwordEncoder))", ignore = true)
     })
     public abstract void updateUserFromUserCreateEditDto(UserCreateEditDto userCreateEditDto, @MappingTarget User user, Company company, PasswordEncoder passwordEncoder);
 

@@ -6,7 +6,7 @@
 </head>
 <body>
     <div th:fragment="header">
-        <form action="/api/v1/logout" method="post">
+        <form th:action="@{/api/v1/logout}" method="post">
             <button type="submit">Logout</button>
         </form>
     </div>
