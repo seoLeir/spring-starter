@@ -38,3 +38,4 @@ java/build/**
 *.log
 images/
 .gradle
+google-client-project-data.json
