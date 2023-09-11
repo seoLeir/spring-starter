@@ -13,7 +13,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @Controller
-@RequestMapping("/api/v1")
+@RequestMapping
 @SessionAttributes("user")
 public class GreetingController {
 

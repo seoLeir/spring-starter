@@ -56,7 +56,7 @@ spring:
           google:
             clientId: "173880337383-3kto0degbcov0s9fg8r22qgcekpjbe43.apps.googleusercontent.com"
             clientSecret: "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"
-            redirectUri: ["http://localhost:8080/login/oauth2/code/google", "http://localhost:8080/swagger-ui/oauth2-redirect.html"]
+#            redirectUri: ["http://localhost:8080/login/oauth2/code/google", "http://localhost:8080/swagger-ui/oauth2-redirect.html"]
             scope:
               - openid
               - email

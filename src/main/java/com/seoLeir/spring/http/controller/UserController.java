@@ -36,7 +36,7 @@ import java.util.Optional;
 @Controller
 @Slf4j
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 public class UserController {
 
     private final UserService userService;
@@ -80,7 +80,7 @@ public class UserController {
         if (bindingResult.hasErrors()){
             redirectAttributes.addFlashAttribute("user", user);
             redirectAttributes.addFlashAttribute("errors", bindingResult.getAllErrors());
-            return "redirect:/api/v1/users/registration";
+            return "redirect:/users/registration";
         }
         userService.create(user);
         return "redirect:/api/v1/login";

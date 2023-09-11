@@ -7,7 +7,7 @@
 <body>
     <div th:insert="~{fragment :: header}"></div>
    <form th:object="${user}"
-         th:action="@{/api/v1/users/{userId}/update(userId=${user.id})}"
+         th:action="@{/users/{userId}/update(userId=${user.id})}"
          enctype="multipart/form-data"
          method="post">
        <label for="username"> Username:
@@ -23,7 +23,7 @@
            <input id="firstName" type="text" name="firstName" th:value="${user.firstName}">
        </label><br>
        <div th:if="${user.image}">
-           <img th:src="@{/api/v2/users/{userId}/avatar(userId=${user.id})}" alt="user image">
+           <img th:src="@{/api/v1/users/{userId}/avatar(userId=${user.id})}" alt="user image">
        </div>
        <label for="image"> Image:
            <input id="image" type="file" name="image">
@@ -46,7 +46,7 @@
        </div>
        <button type="submit">Update</button>
    </form>
-   <form th:action="@{/api/v1/users/{userId}/delete(userId=${user.id})}"
+   <form th:action="@{/users/{userId}/delete(userId=${user.id})}"
          th:if="${user.role.name() == 'ADMIN'}"
          method="post" >
        <button type="submit">remove</button>

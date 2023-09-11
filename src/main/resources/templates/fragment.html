@@ -6,7 +6,8 @@
 </head>
 <body>
     <div th:fragment="header">
-        <form th:action="@{/api/v1/logout}" method="post">
+        <span th:text="${#authentication.principal.username}">Username</span>
+        <form th:action="@{/logout}" method="post">
             <button type="submit">Logout</button>
         </form>
     </div>

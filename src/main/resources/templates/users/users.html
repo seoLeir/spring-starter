@@ -6,7 +6,7 @@
 </head>
 <body>
     <div th:insert="~{fragment :: header}"></div>
-    <form action="/api/v1/users" method="get">
+    <form action="/users" method="get">
         <label for="firstname"> Firstname:
             <input id="firstname" type="text" name="firstname" th:value="${filter.firstname()}">
         </label>
@@ -28,7 +28,7 @@
         <button type="submit">Filter</button>
     </form>
     <div th:each="user: ${users.getContent()}">
-        <a th:href="@{'/api/v1/users/' + ${user.id}}" th:text="|${user.id}. ${user.username}|">
+        <a th:href="@{'/users/' + ${user.id}}" th:text="|${user.id}. ${user.username}|">
             User
         </a>
     </div>

@@ -32,24 +32,24 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http){
         http.authorizeHttpRequests((requests) -> requests
-                .requestMatchers("/api/v1/login", "/api/v1/users/registration", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
-                .requestMatchers("/api/v1/admin").hasAuthority(ADMIN.getAuthority())
-                .requestMatchers("/api/v1/users/*/delete").hasAuthority(ADMIN.getAuthority())
+                .requestMatchers("/login", "/users/registration", "/v3/api-docs/**", "/swagger-ui/**").permitAll()
+                .requestMatchers("/admin").hasAuthority(ADMIN.getAuthority())
+                .requestMatchers("/users/*/delete").hasAuthority(ADMIN.getAuthority())
                 .anyRequest().authenticated());
         http.formLogin(httpSecurityFormLoginConfigurer ->
                 httpSecurityFormLoginConfigurer
-                        .loginPage("/api/v1/login")
-                        .defaultSuccessUrl("/api/v1/users")
+                        .loginPage("/login")
+                        .defaultSuccessUrl("/users")
                         .permitAll());
         http.logout(httpSecurityLogoutConfigurer ->
                 httpSecurityLogoutConfigurer
-                        .logoutUrl("/api/v1/logout")
-                        .logoutSuccessUrl("/api/v1/login")
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/login")
                         .deleteCookies("JSESSIONID"));
         http.httpBasic(withDefaults());
         http.oauth2Login(oauth2Configurer -> oauth2Configurer
-                .loginPage("/api/v1/login")
-                .defaultSuccessUrl("/api/v1/users")
+                .loginPage("/login")
+                .defaultSuccessUrl("/users")
                 .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig.oidcUserService(oidcUserService())));
         return http.build();
     }
