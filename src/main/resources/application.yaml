@@ -59,6 +59,10 @@ spring:
               - openid
               - email
               - profile
+  messages:
+    basename: "messages"
+    encoding: UTF-8
+
 server:
   port: 8080
   error:
@@ -71,7 +75,6 @@ springdoc:
       client-id: "173880337383-3kto0degbcov0s9fg8r22qgcekpjbe43.apps.googleusercontent.com"
       client-secret: "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"
     oauth2-redirect-url: ["http://localhost:8080/login/oauth2/code/google", "http://localhost:8080/swagger-ui/oauth2-redirect.html"]
-
 application:
   image:
     bucket: D:\spring-starter\images
