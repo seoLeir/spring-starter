@@ -18,8 +18,8 @@ public class MessagesRestController {
 
 
     @GetMapping
-    public ResponseEntity<MessagesResponseDto<String>> getMessage(@RequestBody MessagesRequestDto requestDto){
-        String sourceMessage = messageSource.getMessage(requestDto.getKey(), null, "default message", new Locale(requestDto.getLang()));
+    public ResponseEntity<MessagesResponseDto<String>> getMessage(@RequestParam("key") String key, @RequestParam("lang") String language){
+        String sourceMessage = messageSource.getMessage(key, null, "default message", new Locale(language));
         return ResponseEntity.ok()
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(new MessagesResponseDto<>(sourceMessage));
